@@ -1,0 +1,15 @@
+COMPONENT DATASHEETS
+--------------------
+Wurth 7447779147 Inductor: https://www.we-online.com/components/products/datasheet/7447715470.pdf
+CD127 Inductor: https://handsontec.com/dataspecs/discrete/CD127-Inductor.pdf
+BSC057 N-Ch MOSFET: https://www.infineon.com/assets/row/public/documents/24/49/infineon-bsc057n08ns3-g-datasheet-en.pdf?folderId=db3a304313b8b5a60113cee8763b02d7&fileId=db3a30431add1d95011ae803c9345616
+PESD1CAN (CAN bus ESD Protection Diode): https://assets.nexperia.com/documents/data-sheet/PESD1CAN.pdf
+TCAN33x (CAN Interface): https://www.ti.com/lit/ds/symlink/tcan332.pdf?ts=1709051257834
+LM5164 (Synchronous Buck Converter): https://www.ti.com/lit/ds/symlink/lm5164.pdf
+TI DRV8323x Gate Driver: https://www.ti.com/lit/ds/symlink/drv8323.pdf?HQS=dis-dk-null-digikeymode-dsf-pf-null-wwe&ts=1785009074165&ref_url=http%253A%252F%252Fwjs2ic.com%252F
+STM32: https://www.st.com/resource/en/datasheet/stm32g431c6.pdf
+USBLC6 Datasheet (ST) USBLC6 (ST)
+1mΩ Shunt Resistors: https://www.vishay.com/docs/30108/wsk2512.pdf
+Littlefuse Dip Switch: https://www.littelfuse.com/assetdocs/littelfuse-c-k-dip-bd-series-datasheet?assetguid=c1d4e4f2-7607-4309-afba-ad965b566d35
+Resonator: https://abracon.com/Resonators/ABM8G.pdf
+AS5047P: https://look.ams-osram.com/m/d05ee39221f9857/original/AS5047P-DS000324.pdf
