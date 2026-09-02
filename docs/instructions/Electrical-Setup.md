@@ -22,5 +22,7 @@ Red LED on: Gate driver fault detected (DRV_NFAULT)
 
 4. CAN Setup (USB to SLCAN)
 
+Additional CAN adapters are required for daisy-chaining multiple boards.
+
 
 
