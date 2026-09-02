@@ -14,9 +14,13 @@ Red LED on: Gate driver fault detected (DRV_NFAULT)
 --- STM32 Hardware Setup ---
 1. Initial Setup: SWD
 
-2. USB Setup
 
-3. USB to SLCAN+DFU
+<img width="374" height="317" alt="Screenshot 2026-09-02 at 3 56 35 PM" src="https://github.com/user-attachments/assets/29a40d64-4829-4905-839f-94ab0b0469a0" />
+
+
+2. USB Setup (CDC, DFU)
+
+4. CAN Setup (USB to SLCAN)
 
 
 
