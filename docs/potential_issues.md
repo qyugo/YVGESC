@@ -1,4 +1,4 @@
-POTENTIAL ISSUES
+**POTENTIAL ISSUES**
 
 47uF power inductor is used, which may cause some amount of unwanted input fluctuation. 
 However, the lowest ripple voltage configuration is arranged for the LM5164 buck regulator.
