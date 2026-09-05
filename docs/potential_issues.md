@@ -1,6 +1,6 @@
 **POTENTIAL ISSUES**
 
-Power Inductor 
+1. Power Inductor and Ripple Current in Buck Regulator
 
 A smaller 47uH power inductor is used, which may cause some amount of unwanted input fluctuation compared to a calculated 51.4uH. 
 
