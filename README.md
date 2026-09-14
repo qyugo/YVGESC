@@ -1,6 +1,6 @@
 # YVGESC
 A custom FOC Electronic Speed Controller for running brushless motors.
-Up to 50V bus, 30A cont. 52A peak current
+Up to 50V bus, 30A cont. phase current
 
 Running a STM32G431RBT6 IC and DRV8323H gate driver, with an AS5047P absolute encoder.
 
