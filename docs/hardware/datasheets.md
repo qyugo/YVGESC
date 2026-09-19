@@ -1,4 +1,4 @@
-COMPONENT DATASHEETS
+## COMPONENT DATASHEETS
 --------------------
 Wurth 7447779147 Inductor: 
 https://www.we-online.com/components/products/datasheet/7447715470.pdf
@@ -12,7 +12,7 @@ https://www.infineon.com/assets/row/public/documents/24/49/infineon-bsc057n08ns3
 PESD1CAN (CAN bus ESD Protection Diode): 
 https://assets.nexperia.com/documents/data-sheet/PESD1CAN.pdf
 
-TCAN33x (CAN Interface): 
+TCAN33x (CAN Transceiver): 
 https://www.ti.com/lit/ds/symlink/tcan332.pdf?ts=1709051257834
 
 LM5164 (Synchronous Buck Converter): 
