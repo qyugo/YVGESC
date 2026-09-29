@@ -10,9 +10,10 @@ permalink: /
 A custom FOC Electronic Speed Controller for running brushless motors.
 Up to 50V bus, 30A cont. phase current
 
-<img src="https://github.com/user-attachments/assets/5b07d36f-3da9-4ea6-a4c7-dd8945dfa303" width="45%"/>
-
-<img src="https://github.com/user-attachments/assets/d7143a77-d2e6-44ee-945c-3f06ae84d620" width="50%" />
+<div style="display: flex; gap: 1rem;">
+  <img src="https://github.com/user-attachments/assets/5b07d36f-3da9-4ea6-a4c7-dd8945dfa303" alt="Mounted on custom motor, oblique view" style="width: 45%;">
+  <img src="https://github.com/user-attachments/assets/d7143a77-d2e6-44ee-945c-3f06ae84d620" alt="Mounted on custom motor, side view" style="width: 50%;">
+</div>
 
 
 Running a STM32G431RBT6 IC and DRV8323H gate driver, with an AS5047P absolute encoder.
