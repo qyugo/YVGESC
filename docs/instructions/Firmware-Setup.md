@@ -1,7 +1,7 @@
 ---
 title: Electrical Setup
 parent: Instructions
-nav_order: 1
+nav_order: 3
 ---
 
 **FIRMWARE SETUP for STM32G**
