@@ -1,5 +1,5 @@
 ---
-title: Electrical Setup
+title: Firmware Setup
 parent: Instructions
 nav_order: 3
 ---
