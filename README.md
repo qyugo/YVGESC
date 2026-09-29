@@ -1,3 +1,8 @@
+---
+title: Overview
+nav_order: 1
+---
+
 # YVGESC
 A custom FOC Electronic Speed Controller for running brushless motors.
 Up to 50V bus, 30A cont. phase current
