@@ -8,7 +8,7 @@ nav_order: 2
 
 YVGESC-1 was designed in KiCad.
 
-[Download](https://github.com/qyugo/YVGESC/blob/main/docs/images/yvgesc1-schematic2.pdf)
+[Download](https://qyugo.github.io/YVGESC/files/yvgesc1-schematic2.pdf)
 
-<iframe src="https://github.com/qyugo/YVGESC/blob/main/docs/images/yvgesc1-schematic2.pdf" width="100%" height="800px" style="border: none;"></iframe>
+<iframe src="https://qyugo.github.io/YVGESC/files/yvgesc1-schematic2.pdf" width="100%" height="800px" style="border: none;"></iframe>
 
