@@ -1,3 +1,9 @@
+---
+title: Component Datasheets
+parent: Hardware Design
+nav_order: 1
+---
+
 ## COMPONENT DATASHEETS
 --------------------
 Wurth 7447779147 Inductor: 
