@@ -6,10 +6,13 @@ nav_order: 1
 
 ## Mechanical Setup
 
-<img src="https://github.com/user-attachments/assets/b91d1f64-945a-4a23-8bc6-2674d9172a56" width = "45%" />
-<img src="https://github.com/user-attachments/assets/299ba573-7934-4da6-a74b-6f7e60281195" width = "45%" />
+<div style="display: flex; gap: 1rem;">
+  <img src="https://github.com/user-attachments/assets/b91d1f64-945a-4a23-8bc6-2674d9172a56" alt="Mounted on custom motor, oblique view" style="width: 45%;">
+  <img src="https://github.com/user-attachments/assets/299ba573-7934-4da6-a74b-6f7e60281195" alt="Mounted on custom motor, side view" style="width: 45%;">
+</div>
 
-### 1. Mounting
+
+### 1. Mounting on Motor
 The PCB contains M3-sized mounting holes, with spacing X = 65mm Y = 55mm.
 
 An adapter to mount the board on the underside of a motor can be fabricated, with adequate spacing for the end of the motor shaft and the encoder magnet carrier.
