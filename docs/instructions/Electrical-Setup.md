@@ -1,3 +1,9 @@
+---
+title: Motor selection
+parent: Instructions
+nav_order: 1
+---
+
 ## Electrical Setup
 
 --- Considerations ---
