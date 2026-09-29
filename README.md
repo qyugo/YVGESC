@@ -6,22 +6,6 @@ nav_order: 1
 layout: default
 ---
 
-# Overview
-
-Test, overview
-
-## Design
-
-| Spec | Value |
-|------|-------|
-| Peak current | 52A |
-
-```python
-print("hellow world")
-```
-
-> Blockquote
-
 
 # YVGESC
 A custom FOC Electronic Speed Controller for running brushless motors.
