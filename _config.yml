@@ -1,3 +1,8 @@
-title: YVGESC1
+title: YVGESC-1
 description: Servo FOC Controller for Brushless DC Motors, 50V/30A
-theme: jekyll-theme-slate
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+color_scheme: dark
+aux_links:
+  "Back to portfolio": "/"
