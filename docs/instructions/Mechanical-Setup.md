@@ -1,8 +1,14 @@
+---
+title: Mechanical Setup
+parent: Instructions
+nav_order: 1
+---
+
 ## Mechanical Setup
 
-<img src="https://github.com/user-attachments/assets/b91d1f64-945a-4a23-8bc6-2674d9172a56" width = "45%" />
+<img src="https://github.com/user-attachments/assets/b91d1f64-945a-4a23-8bc6-2674d9172a56" width = "42%" />
 
-<img src="https://github.com/user-attachments/assets/299ba573-7934-4da6-a74b-6f7e60281195" width = "45%" />
+<img src="https://github.com/user-attachments/assets/299ba573-7934-4da6-a74b-6f7e60281195" width = "42%" />
 
 ### 1. Mounting
 The PCB contains M3-sized mounting holes, with spacing X = 65mm Y = 55mm.
