@@ -2,11 +2,16 @@
 A custom FOC Electronic Speed Controller for running brushless motors.
 Up to 50V bus, 30A cont. phase current
 
+<img src="https://github.com/user-attachments/assets/5b07d36f-3da9-4ea6-a4c7-dd8945dfa303" width="45%"/>
+
+<img src="https://github.com/user-attachments/assets/d7143a77-d2e6-44ee-945c-3f06ae84d620" width="50%" />
+
+
 Running a STM32G431RBT6 IC and DRV8323H gate driver, with an AS5047P absolute encoder.
 
 Features:
-- USB + SWD for flashing and debugging
-- Firmware controlled regen heat dissipation to motor windings (via VBUS sense)
+- USB + SWD for flashing and debugging (requires ST-link)
+- Firmware controlled regen heat dissipation to motor windings
 - 2x CAN line for board daisy-chaining
 - Supports USB to SLCAN
 - Sparkly LEDs (1 red, 1 green)
