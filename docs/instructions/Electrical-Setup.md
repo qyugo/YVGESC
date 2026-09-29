@@ -1,5 +1,5 @@
 ---
-title: Motor selection
+title: Electrical Setup
 parent: Instructions
 nav_order: 1
 ---
