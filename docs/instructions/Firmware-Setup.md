@@ -1,3 +1,9 @@
+---
+title: Electrical Setup
+parent: Instructions
+nav_order: 1
+---
+
 **FIRMWARE SETUP for STM32G**
 
 Softwares used:
