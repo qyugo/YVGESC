@@ -14,4 +14,3 @@ Read the [Mechanical Setup](Mechanical-Setup.md) for mounting the PCB to your mo
 
 Read the [Firmware Setup](Firmware-Setup.md) for initial flashing and downloading firmware.
 
-
