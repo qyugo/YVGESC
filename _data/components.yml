@@ -10,7 +10,28 @@
 
 - name: Nexperia PESD1CAN
   role: CAN bus ESD Protection Diode
-  image: https://github.com/user-attachments/assets/947e79d3-94d6-4d32-b00f-2eb4c70cbfee
+  image: https://github.com/user-attachments/assets/3238bec3-5d4e-4e02-a530-052221e23a31
   datasheet: https://assets.nexperia.com/documents/data-sheet/PESD1CAN.pdf
+
+- name: Texas Instruments TCAN332G
+  role: CAN Transceiver
+  image: https://github.com/user-attachments/assets/d5c2a2fe-0650-4493-87de-60d5475414ca
+  datasheet: https://www.ti.com/lit/ds/symlink/tcan332.pdf?ts=1709051257834
+
+- name: Texas Instruments LM5164DDAT
+  role: 6-100V Synchronous Buck DC-DC Converter
+  image: https://github.com/user-attachments/assets/b9029cc7-7027-43d7-8dc6-35fb55e318de
+  datasheet: https://www.ti.com/lit/ds/symlink/lm5164.pdf
+
+- name: Texas Instruments DRV8323H
+  role: 6-60V Three-Phase Gate Driver (H/W Interface)
+  image: https://github.com/user-attachments/assets/3db5f654-903d-4c3b-a2fc-c09e9523e143
+  datasheet: https://www.ti.com/lit/ds/symlink/drv8323.pdf?HQS=dis-dk-null-digikeymode-dsf-pf-null-wwe&ts=1785009074165&ref_url=http%253A%252F%252Fwjs2ic.com%252F
+
+- name: STMicroelectronics STM32G431RBT6
+  role: Microcontroller Unit
+  image: https://github.com/user-attachments/assets/d9ac4fda-5859-4b46-b93d-84875df2339b
+  datasheet: https://www.st.com/resource/en/datasheet/stm32g431c6.pdf
+
 
   
