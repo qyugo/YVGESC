@@ -17,7 +17,7 @@ You can use a 1.27mm to 1.27mm 2x5 SWD cable, or connect them individually.
 
 <div style="display: flex; gap: 1rem;">
   <img src="https://github.com/user-attachments/assets/ded3915e-7562-4e64-8fe1-10b6e5d3218d" alt="St-linked" style="width: 40%;">
-  <img src="https://github.com/user-attachments/assets/e442a36a-32ce-4429-acb0-5009e2fba9c5" alt="YVGESC SWD Pinout" style="width: 40%;">
+  <img src="https://github.com/user-attachments/assets/e442a36a-32ce-4429-acb0-5009e2fba9c5" alt="YVGESC SWD Pinout" style="width: 50%;">
 </div>
 
 ## 1A. Configuring Nucleo-G431RB
