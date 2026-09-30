@@ -7,6 +7,18 @@ nav_order: 1
 ## Components and Datasheets
 --------------------
 
+<div class="parts">
+{% for p in site.data.components %}
+  <a class="part" href="{{ p.datasheet | relative_url }}" target="_blank" rel="noopener">
+    <img src="{{ p.image | relative_url }}" alt="{{ p.name }}">
+    <div class="part-body">
+      <p class="part-name">{{ p.name }}</p>
+      <p class="part-meta">{{ p.role }}</p>
+    </div>
+  </a>
+{% endfor %}
+</div>
+
 ### Wurth 7447779147 $47\mu H$ Power Inductor: [Datasheet](https://www.we-online.com/components/products/datasheet/7447715470.pdf)
 
 <img src="https://github.com/user-attachments/assets/6ff119f2-9e3c-42e2-997c-f3e028a28488" width="30%"/>
