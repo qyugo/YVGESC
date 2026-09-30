@@ -9,8 +9,6 @@ nav_order: 1
 
 Relevant components for the PCB. Click a card to open its datasheet.
 
-Testing
-
 <div class="parts">
 {%- for p in site.data.components -%}
 <a class="part" href="{{ p.datasheet | relative_url }}" target="_blank" rel="noopener">
@@ -22,5 +20,3 @@ Testing
 </a>
 {%- endfor -%}
 </div>
-
-endtest
