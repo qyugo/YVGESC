@@ -1,12 +1,37 @@
-- name: Wurth 7447779147
-  role: 47uH Power Inductor
-  image: https://github.com/user-attachments/assets/6ff119f2-9e3c-42e2-997c-f3e028a28488
-  datasheet: https://www.we-online.com/components/products/datasheet/7447715470.pdf
+- name: Texas Instruments DRV8323H
+  role: 6-60V Three-Phase Gate Driver (H/W Interface)
+  image: https://github.com/user-attachments/assets/3db5f654-903d-4c3b-a2fc-c09e9523e143
+  datasheet: https://www.ti.com/lit/ds/symlink/drv8323.pdf?HQS=dis-dk-null-digikeymode-dsf-pf-null-wwe&ts=1785009074165&ref_url=http%253A%252F%252Fwjs2ic.com%252F
+
+- name: STMicroelectronics STM32G431RBT6
+  role: Microcontroller Unit
+  image: https://github.com/user-attachments/assets/d9ac4fda-5859-4b46-b93d-84875df2339b
+  datasheet: https://www.st.com/resource/en/datasheet/stm32g431c6.pdf
+
+- name: OSRAM AS5047P
+  role: Magnetic Encoder
+  image: https://github.com/user-attachments/assets/fa82ead4-8c45-4930-9d39-970a76d7864a
+  datasheet: https://look.ams-osram.com/m/d05ee39221f9857/original/AS5047P-DS000324.pdf
 
 - name: Infineon BSC057N08NS3G
   role: 80V N-Channel MOSFET
   image: https://github.com/user-attachments/assets/f379d139-b035-4f9a-826c-5f2b49a7da75
   datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-bsc057n08ns3-g-datasheet-en.pdf?folderId=db3a304313b8b5a60113cee8763b02d7&fileId=db3a30431add1d95011ae803c9345616
+
+- name: Vishay Dale WSK2512
+  role: 1 mOhm 1W Kelvin-sense 4-Terminal Shunt Resistor
+  image: https://github.com/user-attachments/assets/c2046999-6880-4a43-8ede-f879c7405ae0
+  datasheet: https://www.vishay.com/docs/30108/wsk2512.pdf
+
+- name: Abracon ABM8G
+  role: 50MHz Ceramic Crystal Oscillator
+  image: https://github.com/user-attachments/assets/fa504fa0-851a-422e-97cb-54c57d170d87
+  datasheet: https://abracon.com/Resonators/ABM8G.pdf
+  
+- name: Wurth 7447779147
+  role: 47uH Power Inductor
+  image: https://github.com/user-attachments/assets/6ff119f2-9e3c-42e2-997c-f3e028a28488
+  datasheet: https://www.we-online.com/components/products/datasheet/7447715470.pdf
 
 - name: Nexperia PESD1CAN
   role: CAN bus ESD Protection Diode
@@ -23,38 +48,13 @@
   image: https://github.com/user-attachments/assets/b9029cc7-7027-43d7-8dc6-35fb55e318de
   datasheet: https://www.ti.com/lit/ds/symlink/lm5164.pdf
 
-- name: Texas Instruments DRV8323H
-  role: 6-60V Three-Phase Gate Driver (H/W Interface)
-  image: https://github.com/user-attachments/assets/3db5f654-903d-4c3b-a2fc-c09e9523e143
-  datasheet: https://www.ti.com/lit/ds/symlink/drv8323.pdf?HQS=dis-dk-null-digikeymode-dsf-pf-null-wwe&ts=1785009074165&ref_url=http%253A%252F%252Fwjs2ic.com%252F
-
-- name: STMicroelectronics STM32G431RBT6
-  role: Microcontroller Unit
-  image: https://github.com/user-attachments/assets/d9ac4fda-5859-4b46-b93d-84875df2339b
-  datasheet: https://www.st.com/resource/en/datasheet/stm32g431c6.pdf
-
 - name: STMicroelectronics USBLC6-2SC6
   role: USB TVS Diode
   image: https://github.com/user-attachments/assets/2e323a0b-4b93-4049-849e-5805f9fd45ba
   datasheet: https://www.st.com/resource/en/datasheet/usblc6-2.pdf
 
-- name: Vishay Dale WSK2512
-  role: 1 $m\ohm$ 1W Kelvin-sense 4-Terminal Shunt Resistor
-  image: https://github.com/user-attachments/assets/c2046999-6880-4a43-8ede-f879c7405ae0
-  datasheet: https://www.vishay.com/docs/30108/wsk2512.pdf
-
 - name: Megastar ZX-2.54BM-1PZC
   role: 1P DIP switch
   image: https://github.com/user-attachments/assets/60baafcb-2c51-45c8-b079-1040749eb5ab
   datasheet: https://www.lcsc.com/datasheet/C7527760.pdf
-
-- name: Abracon ABM8G
-  role: 50MHz Ceramic Crystal Oscillator
-  image: https://github.com/user-attachments/assets/fa504fa0-851a-422e-97cb-54c57d170d87
-  datasheet: https://abracon.com/Resonators/ABM8G.pdf
-
-- name: OSRAM AS5047P
-  role: Magnetic Encoder
-  image: https://github.com/user-attachments/assets/fa82ead4-8c45-4930-9d39-970a76d7864a
-  datasheet: https://look.ams-osram.com/m/d05ee39221f9857/original/AS5047P-DS000324.pdf
   
