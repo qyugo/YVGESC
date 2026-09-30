@@ -3,12 +3,12 @@
   image: https://github.com/user-attachments/assets/6ff119f2-9e3c-42e2-997c-f3e028a28488
   datasheet: https://www.we-online.com/components/products/datasheet/7447715470.pdf
 
-- name: Nexperia PESD1CAN
-  role: CAN Bus ESD Protection Diode
+- name: Infineon BSC057N08NS3G
+  role: 80V N-Channel MOSFET
   image: https://github.com/user-attachments/assets/f379d139-b035-4f9a-826c-5f2b49a7da75
   datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-bsc057n08ns3-g-datasheet-en.pdf?folderId=db3a304313b8b5a60113cee8763b02d7&fileId=db3a30431add1d95011ae803c9345616
 
-  - name: Nexperia PESD1CAN
+- name: Nexperia PESD1CAN
   role: CAN bus ESD Protection Diode
   image: https://github.com/user-attachments/assets/947e79d3-94d6-4d32-b00f-2eb4c70cbfee
   datasheet: https://assets.nexperia.com/documents/data-sheet/PESD1CAN.pdf
