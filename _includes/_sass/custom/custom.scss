@@ -1,0 +1,43 @@
+.parts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.part {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background: $sidebar-color;
+}
+.part:hover,
+.part:focus-visible {
+  border-color: $link-color;
+}
+
+.part img {
+  box-sizing: border-box;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: #fff;
+  padding: 0.5rem;
+}
+
+.part-body {
+  padding: 0.6rem 0.75rem 0.75rem;
+}
+.part-name {
+  font-weight: 600;
+  margin: 0;
+}
+.part-meta {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin: 0.2rem 0 0;
+}
