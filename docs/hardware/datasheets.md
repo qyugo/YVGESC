@@ -23,6 +23,8 @@ Testing
 {%- endfor -%}
 </div>
 
+endtest
+
 ### Wurth 7447779147 $47\mu H$ Power Inductor: [Datasheet](https://www.we-online.com/components/products/datasheet/7447715470.pdf)
 
 <img src="https://github.com/user-attachments/assets/6ff119f2-9e3c-42e2-997c-f3e028a28488" width="30%"/>
