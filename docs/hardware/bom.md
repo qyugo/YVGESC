@@ -1,6 +1,8 @@
-title: Schematics
+---
+title: Bill of Materials
 parent: Hardware Design
 nav_order: 3
+---
 
 ## Bill of Materials
 
