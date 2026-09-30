@@ -7,7 +7,9 @@ permalink: /
 
 
 # YVGESC
-This is my custom driver board that runs Field-Oriented Control (FOC) for high-performance servo, speed, and torque control for brushless DC motors. It is a 64x74mm board designed by me and commissioned to JLCPCB, handling up to 50V bus, 30A continuous current per phase (if air-blasted), and a 52A peak current.
+This is my custom driver board that runs Field-Oriented Control (FOC) for high-performance servo, speed, and torque control for brushless DC motors. 
+
+It is a 64x74mm board I designed in KiCad and commissioned to JLCPCB, handling up to 50V bus, 30A continuous current per phase (if air-blasted), and a 52A peak current.
 
 This is the final implementation in a full-stack actuator learning adventure I embarked on for fun, having built brushless motors from scratch, a motor-assembling visualizer, and a BLDC drivetrain. If you are interested, those projects are on my website.
 
