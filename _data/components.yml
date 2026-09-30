@@ -33,5 +33,28 @@
   image: https://github.com/user-attachments/assets/d9ac4fda-5859-4b46-b93d-84875df2339b
   datasheet: https://www.st.com/resource/en/datasheet/stm32g431c6.pdf
 
+- name: STMicroelectronics USBLC6-2SC6
+  role: USB TVS Diode
+  image: https://github.com/user-attachments/assets/2e323a0b-4b93-4049-849e-5805f9fd45ba
+  datasheet: https://www.st.com/resource/en/datasheet/usblc6-2.pdf
 
+- name: Vishay Dale WSK2512
+  role: 1 $m\ohm$ 1W Kelvin-sense 4-Terminal Shunt Resistor
+  image: https://github.com/user-attachments/assets/c2046999-6880-4a43-8ede-f879c7405ae0
+  datasheet: https://www.vishay.com/docs/30108/wsk2512.pdf
+
+- name: Megastar ZX-2.54BM-1PZC
+  role: 1P DIP switch
+  image: https://github.com/user-attachments/assets/60baafcb-2c51-45c8-b079-1040749eb5ab
+  datasheet: https://www.lcsc.com/datasheet/C7527760.pdf
+
+- name: Abracon ABM8G
+  role: 50MHz Ceramic Crystal Oscillator
+  image: https://github.com/user-attachments/assets/fa504fa0-851a-422e-97cb-54c57d170d87
+  datasheet: https://abracon.com/Resonators/ABM8G.pdf
+
+- name: OSRAM AS5047P
+  role: Magnetic Encoder
+  image: https://github.com/user-attachments/assets/fa82ead4-8c45-4930-9d39-970a76d7864a
+  datasheet: https://look.ams-osram.com/m/d05ee39221f9857/original/AS5047P-DS000324.pdf
   
