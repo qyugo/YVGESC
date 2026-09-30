@@ -16,7 +16,7 @@ nav_order: 1
 <img src="https://github.com/user-attachments/assets/f379d139-b035-4f9a-826c-5f2b49a7da75" width="30%"/>
 
 
-### PESD1CAN (CAN bus ESD Protection Diode): [Datasheet}(https://assets.nexperia.com/documents/data-sheet/PESD1CAN.pdf)
+### PESD1CAN (CAN bus ESD Protection Diode): [Datasheet](https://assets.nexperia.com/documents/data-sheet/PESD1CAN.pdf)
 
 
 ### TCAN33x (CAN Transceiver): [Datasheet](https://www.ti.com/lit/ds/symlink/tcan332.pdf?ts=1709051257834)
