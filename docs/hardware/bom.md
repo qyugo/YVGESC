@@ -1,3 +1,7 @@
+title: Schematics
+parent: Hardware Design
+nav_order: 3
+
 ## Bill of Materials
 
 <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=https://qyugo.github.io/YVGESC/docs/electricalcomponents-bom.xlsx"
