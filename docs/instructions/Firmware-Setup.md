@@ -4,7 +4,32 @@ parent: Instructions
 nav_order: 3
 ---
 
-**FIRMWARE SETUP for STM32G**
+# Firmware Setup
+
+Here is the initial process for flashing the board via ST-link. The example shown here will utilize a Nucleo-G431RB board, that runs the same G4RBT6 chip that the YVGESC uses.
+
+## STM32 Hardware Setup
+
+### 1. Initial Setup: SWD
+
+<img src="https://github.com/user-attachments/assets/29a40d64-4829-4905-839f-94ab0b0469a0" width="50%" />
+
+For first bring-up, a separate Nucleo-G431RB board containing an onboard ST-link debugger is used and programs the PCB via serial wire debug.
+
+Further, in case the board is ever bricked and the USB loses functionality, SWD will act as an emergency access point.
+
+SWCLK, SWDIO, GND, and 3.3 connected to Nucleo’s CN4. Please double check the wiring from the two SWD headers:
+
+Firmware: nBOOT_sel = 1
+
+2. USB Setup (CDC, DFU)
+
+After initial bring-up, USB can be configured to act as a virtual COM port for future device flashing or firmware updates.
+
+3. CAN Setup (USB to SLCAN)
+
+Since the board is USB-C capable and contains an onboard CAN transceiver, it is possible to access CAN communications directly over USB without the need for a separate USB to CAN adapter (such as the CANable). Via FDCAN1 and the USB peripheral, commands can be translated via serial line (ASCII) between USB-CDC and the CAN bus. This will be implemented in firmware.
+
 
 Softwares used:
 
@@ -27,3 +52,5 @@ Softwares used:
 
 
 Flux Braking Setup - TBD
+
+
