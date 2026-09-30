@@ -12,9 +12,13 @@ Here is the initial process for flashing the board via ST-link. The example show
 
 ### 1. Initial Setup: SWD
 
-<img src="https://github.com/user-attachments/assets/29a40d64-4829-4905-839f-94ab0b0469a0" width="50%" />
+<div style="display: flex; gap: 1rem;">
+  <img src="https://github.com/user-attachments/assets/ded3915e-7562-4e64-8fe1-10b6e5d3218d" alt="St-linked" style="width: 45%;">
+  <img src="https://github.com/user-attachments/assets/e442a36a-32ce-4429-acb0-5009e2fba9c5" alt="YVGESC SWD Pinout" style="width: 45%;">
+</div>
 
-For first bring-up, a separate Nucleo-G431RB board containing an onboard ST-link debugger is used and programs the PCB via serial wire debug.
+
+For first bring-up, a separate Nucleo-G431RB board containing an onboard ST-link debugger is used and programs the PCB via serial wire debug. You can use a 1.27mm to 1.27mm 2x5 SWD cable, or connect them individually.
 
 Further, in case the board is ever bricked and the USB loses functionality, SWD will act as an emergency access point.
 
