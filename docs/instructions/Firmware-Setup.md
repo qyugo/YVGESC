@@ -104,9 +104,13 @@ Once connected in CubeProgrammer, open Option Bytes from the left sidebar, and s
 
 <img width="852" height="524" alt="image" src="https://github.com/user-attachments/assets/180e22a3-971f-49ba-89ab-d83be03e1d49" />
 
-## Part 2: Install Firmware
+At this point, you can test out a [blink].
 
-STMCubeMX
+
+
+
+
+
 
 
 
