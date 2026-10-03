@@ -75,7 +75,7 @@ As mentioned prior, there are jumpers on the Nucleo board to act as hardware int
 
 After the ST-link isolation is flashed, the only change needed is disconnecting JP3. What this does is allow the usage of nRST to only apply to the YVGESC, and not reset the Nucleo evaluation board itself.
 
-<img src="https://github.com/user-attachments/assets/d6a9f1b9-d3e3-4ea2-aa80-5233347bf1f5" width=80%/>
+<img src="https://github.com/user-attachments/assets/d6a9f1b9-d3e3-4ea2-aa80-5233347bf1f5" width="80%"/>
 
 ### C. Connecting YVGESC to Nucleo/ST-Link
 
