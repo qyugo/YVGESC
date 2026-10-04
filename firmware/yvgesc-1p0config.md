@@ -34,7 +34,40 @@ DRV_nFAULT is set to PA6 in hardware, so it is configured to GPIO input in CubeM
 Correction: Led and fault, 100k resistor for v2
 
 PA6 to ADC2_IN3 Watchdog
+VREFINT Debug
 
 
 <img width="634" height="749" alt="image" src="https://github.com/user-attachments/assets/32cc4964-66f7-4c5d-8a65-af22f68cd481" />
+
+SOC and Solder
+
+VREF Soldered to 3.3V (issue 3, bringup for yvgesc v2)
+SOC multimeter/scope checks
+
+Current Sense
+
+<img width="829" height="604" alt="image" src="https://github.com/user-attachments/assets/86b98d27-559c-43a2-bcc3-538bcecf51bf" />
+
+
+<img width="875" height="381" alt="image" src="https://github.com/user-attachments/assets/4b7fa4a9-0000-4946-b917-02c627a5c96a" />
+
+<img width="904" height="388" alt="image" src="https://github.com/user-attachments/assets/b9b1bf99-75d0-453c-909a-61839049b5d0" />
+
+I had Vrefint wrongly configured. Update with CAL_ON = 1:
+
+<img width="897" height="384" alt="image" src="https://github.com/user-attachments/assets/a600886a-8441-4d7f-8407-2c4b80fc8fb2" />
+
+...and CAL_ON=0:
+
+<img width="907" height="428" alt="image" src="https://github.com/user-attachments/assets/6d248916-da42-42aa-82bc-d24fe62cbb68" />
+
+There is some noise, may try to reduce using oversampling later on, there is likely some noise nearby due to all the soldering or otherwise.
+
+Current sense complete, next up will be the FDCAN and first PWM drive.
+
+
+
+
+
+
 
