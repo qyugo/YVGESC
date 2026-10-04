@@ -65,8 +65,43 @@ There is some noise, may try to reduce using oversampling later on, there is lik
 
 Current sense complete, next up will be the FDCAN and first PWM drive.
 
+## FDCAN
 
+PB8 is wired to CAN_RX, and PB9 is wired to CAN_TX, clocked to HSE @ 8MHz.
 
+<img width="259" height="141" alt="image" src="https://github.com/user-attachments/assets/f2dcf289-a694-443f-bff9-dc8150097926" />
+
+Test 1: internal loopback, 500kbits/s, sample point 87.5%
+
+<img width="892" height="333" alt="image" src="https://github.com/user-attachments/assets/7c432289-d4d7-40a9-bb99-ab509535d480" />
+
+Will test Normal mode with another can bus to test for receiving messages as well as the termination switch.
+
+## PWM
+
+Pinout:
+INHA: PA8
+INLA: PA7
+INHB: PA9
+INLB: PB0
+INHC: PA10
+INLC: PB1
+
+<img width="409" height="385" alt="image" src="https://github.com/user-attachments/assets/97683e3f-fc28-42ba-8752-6f1a8aaf6abe" />
+
+Center aligned, 20kHz, 500ns dead time (currently x4)
+
+WOrks
+
+CLock to PLL, 8-170MHz
+
+pllm to /2
+
+<img width="1381" height="550" alt="image" src="https://github.com/user-attachments/assets/4ba9676f-efb4-4a84-9ee4-4a67534a1711" />
+
+124ns tim1 dead time
+
+SPi2 prescaler to 5.3125 mHZ
 
 
 
