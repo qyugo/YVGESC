@@ -1,6 +1,6 @@
 ---
 title: 1.0 Bring-up Documentation
-parent: Firmware Documentation
+parent: FOC Documentation
 nav_order: 1
 ---
 
