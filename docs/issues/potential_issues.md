@@ -1,3 +1,9 @@
+---
+title: Issues (V1)
+nav_order: 4
+has_children: true
+---
+
 **POTENTIAL ISSUES**
 
 1. Power Inductor and Ripple Current in Buck Regulator
