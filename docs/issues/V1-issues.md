@@ -44,7 +44,7 @@ Further, VREF+ on the DRV8323H was unpowered, which slipped my check as well, si
     <img src="https://github.com/user-attachments/assets/0e6e575f-09ab-4b11-9c28-83a12f86289e" style="width: 40%;">
   </div>
   <figcaption style="text-align: center; margin-top: 0.5rem;">
-    Figure 1 (left): VDDA island and sever mark. Figure 2 (right): VREF+, VDDA, and VDD jumper configuration.
+    Figure 1 (left): VDDA island and sever mark. <br> Figure 2 (right): VREF+, VDDA, and VDD jumper configuration.
   </figcaption>
 </figure>
 
