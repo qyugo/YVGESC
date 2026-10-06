@@ -8,13 +8,38 @@ nav_order: 1
 
 This documents the hardware, firmware, and software bring-up and testing process for developing all V0 versions up to V1.0, which is the first stable release.
 
-1. CubeMX was used to generate an STM32CubeIDE project for blink.
+## 1. Blink, Clock Config (V0.0)
 
-Configures PB11 as blink GPIO for 0-3.3V oscillation of 2000ms, for checking clock.
+1. Blink test on PB11 (33), toggle 2000ms
 
-3. CubeMX was used to generate a CMake project for v1p0 firmware.
+Configures PB11 (33) as blink GPIO for 0-3.3V oscillation of 2000ms, for verifying clock configuration. 
 
-### AS5047P Encoder
+Initial testing firmware is configured in STM32CubeMX. STM32CubeMX was used to generate an STM32CubeIDE project for blink.
+
+Here is a quick setup for flashing a 0-3.3v blink on the PB11 pin measured via oscilloscope.
+
+From the Pinout and Configuration tab on the home page, switch to System View and configure the following:
+
+SYS: Debug -> Serial Wire
+
+<img width="503" height="310" alt="image" src="https://github.com/user-attachments/assets/39994454-9a9f-47b6-8d1e-ab522155912b" />
+
+<img width="506" height="309" alt="image" src="https://github.com/user-attachments/assets/c5a6e27e-7244-4917-80a7-e17a1454a782" />
+
+The oscillator that this board uses is an Abracon AB8MG. From the Clock tab, set input frequency to 8MHz, and HSE at System Clock Mux and PLL Source Mux.
+
+<img width="1413" height="686" alt="image" src="https://github.com/user-attachments/assets/98adffba-1833-4f0f-a192-1a2663f76caf" />
+
+Timer toggle:
+
+<img width="517" height="559" alt="image" src="https://github.com/user-attachments/assets/ed1acf41-6bb0-4f73-9f0c-f7ca3b9a1fca" />
+
+<img width="1267" height="770" alt="image" src="https://github.com/user-attachments/assets/64430369-78c6-42a8-ac9f-762ce62374bc" />
+
+
+## 2. AS5047P Encoder
+
+CubeMX was used to generate a CMake project for the rest of the v1p0 firmware.
 
 The encoder is wired in at SPI2 (PB12, 13, 14, 25) for CSN, CLK, MOSI, and MISO
 
@@ -33,17 +58,26 @@ iii. AS5047P encoders deliver 16 bits per frame and runs on a 2-Edge clock phase
 
 SPI2 is effectively only configured to receive. The functions ```HAL_SPI_Transmit``` and ```HAL_SPI_TransmitReceive``` therefore, should never be called.
 
-### Gate Driver
+## 3. Gate Driver
 
-DRV_nFAULT is set to PA6 in hardware, so it is configured to GPIO input in CubeMX:
+1. DRV_Enable
+
+The MCU on the YVGESC maps PC0 (8) to DRV_ENABLE. In Pinout view, this is set to GPIO output, ensuring output level: LOW in System Core -> GPIO.
+
+<img width="604" height="643" alt="image" src="https://github.com/user-attachments/assets/7295d300-2313-416a-9930-deacb20ec107" />
+
+2. DRV_nFAULT is set to PA6 in hardware, so it is configured to GPIO input in CubeMX:
 
 <img width="862" height="527" alt="image" src="https://github.com/user-attachments/assets/9d016068-a089-40f8-92ea-2b9b2b37b520" />
 
-Correction: Led and fault, 100k resistor for v2
 
-PA6 to ADC2_IN3 Watchdog
+
+This is where I encountered the first issue, as ADC was not properly reading the nFAULT signals. This is later fixed via hardware and in the 
+
+Correction (unused): Led and fault, 100k resistor for v2
+
+Notes: PA6 to ADC2_IN3 Watchdog
 VREFINT Debug
-
 
 <img width="634" height="749" alt="image" src="https://github.com/user-attachments/assets/32cc4964-66f7-4c5d-8a65-af22f68cd481" />
 
@@ -52,7 +86,7 @@ SOC and Solder
 VREF Soldered to 3.3V (issue 3, bringup for yvgesc v2)
 SOC multimeter/scope checks
 
-Current Sense
+## 4. Current Sense
 
 <img width="829" height="604" alt="image" src="https://github.com/user-attachments/assets/86b98d27-559c-43a2-bcc3-538bcecf51bf" />
 
@@ -75,7 +109,7 @@ Current sense complete, next up will be the FDCAN and first PWM drive.
 
 ADC and everything works. Released as 0.1.
 
-## FDCAN
+## 5. FDCAN
 
 PB8 is wired to CAN_RX, and PB9 is wired to CAN_TX, clocked to HSE @ 8MHz.
 
@@ -87,7 +121,7 @@ Test 1: internal loopback, 500kbits/s, sample point 87.5%
 
 Will test Normal mode with another can bus to test for receiving messages as well as the termination switch.
 
-## PWM
+## 6. PWM + Open Loop
 
 Pinout:
 INHA: PA8
@@ -101,7 +135,7 @@ INLC: PB1
 
 Center aligned, 20kHz, 500ns dead time (currently x4)
 
-WOrks
+Works.
 
 CLock to PLL, 8-170MHz
 
@@ -115,7 +149,7 @@ SPi2 prescaler to 5.3125 mHZ
 
 Open loop success. Released as 0.2.
 
-## Phase Current Sampling
+## 7. Phase Current Sampling for FOC Loops
 
 In this part, the sampling is configured to happen at a fixed point in each PWM cycle. The shunts are located on the low side FETs.
 
@@ -187,7 +221,7 @@ The park transform then converts $I\alpha$ and $I\beta$ into Iq and Id, in refer
 
 The current loop then keeps Id at 0 and Iq relative to a torque command.
 
-## CURRENT LOOP - Running inside the ADC2 interrupt (20kHz)
+## 8. CURRENT LOOP - Running inside the ADC2 interrupt (20kHz)
 
 What it does: measures current and transforms them into Id and Iq using encoder angle, with two PI controllers
 
@@ -298,7 +332,9 @@ foc_mode = 0, ol_mode = 1, ol_v = 0, cal_req = 1, pwm_on = 1
 
 ol_v = 0.15, ol_deg = 0, -> run -> align_req = 1
 
-TORQUE MODE/closed loop current: Minimum Iq = 2 to spin for Eaglepower
+## 9. TORQUE MODE/closed loop current, and calibration script 
+
+Minimum Iq = 2 to spin for Eaglepower
 
 Torque mode / inner PI loops complete
 
@@ -311,7 +347,7 @@ kp = 0.3, ki = 0.03
 
 Works with flash calibration. If needed, realign and hit save_req=1, otherwise calibration should happen automatically upon boot.
 
-## VELOCITY CONTROL
+## 10. VELOCITY CONTROL
 
 New variables:
 ```
@@ -372,11 +408,19 @@ Some cogging stuff at lower speeds, bumped up ki, bumping up kp gives a grinding
 
 Released as V0.4 in firmware.
 
-## Impedance Control
+## 11. Position and Impedance Control
 
 Objective: spring damper with feed forward torque t_ff
 
+Success.
 
+## 12. CAN from another source/telemetry tests
+
+TBD
+
+## 13. Flux Braking (Advanced)
+
+TBD
 
 
 
