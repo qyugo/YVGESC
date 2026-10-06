@@ -1,5 +1,5 @@
 ---
-title: Issues (V1)
+title: Issues
 nav_order: 4
 has_children: true
 ---
