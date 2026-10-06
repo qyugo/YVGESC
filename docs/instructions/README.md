@@ -16,9 +16,9 @@ Read the [Firmware Setup](Firmware-Setup.md) for initial flashing and downloadin
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
   <iframe
-    src="https://youtu.be/S9OsQaVYzI0?si=bJhxGwfe9uIs1v4X"
+    src="https://www.youtube.com/embed/S9OsQaVYzI0"
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-    title="YVGESC V1 Bring-up"
+    title="foc on custom board"
     loading="lazy"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen>
