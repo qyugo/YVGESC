@@ -4,7 +4,7 @@ nav_order: 4
 has_children: true
 ---
 
-**POTENTIAL ISSUES**
+## Issues
 
 1. Power Inductor and Ripple Current in Buck Regulator
 
