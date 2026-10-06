@@ -6,6 +6,13 @@ has_children: true
 
 ## Issues
 
+Some hardware and firmware issues for board releases are reported in this section. Currently, documentation is available for V1.0 and mentioned in the usage instructions as well as here:
+
+[YVGESC V1.0 Hardware and Firmware Issues](V1-issues.md)
+
+
+Potential Issues - Ignore for the most part, will verify these in testing.
+
 1. Power Inductor and Ripple Current in Buck Regulator
 
 A smaller 47uH power inductor is used, which may cause some amount of unwanted input fluctuation compared to a calculated 51.4uH. 
