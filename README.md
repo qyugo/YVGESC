@@ -14,9 +14,11 @@ It is a 64x74mm board I designed in KiCad and commissioned to JLCPCB, handling u
 This is the final implementation in a full-stack actuator learning adventure I embarked on for fun, having built brushless motors from scratch, a motor-assembling visualizer, and a BLDC drivetrain. If you are interested, those projects are on my website.
 
 <div style="display: flex; gap: 1rem;">
-  <img src="https://github.com/user-attachments/assets/5b07d36f-3da9-4ea6-a4c7-dd8945dfa303" alt="Mounted on custom motor" style="width: 45%;">
-  <img src="https://github.com/user-attachments/assets/d7143a77-d2e6-44ee-945c-3f06ae84d620" alt="Driver boards, front and back view" style="width: 45%;">
+  <img src="https://github.com/user-attachments/assets/5b07d36f-3da9-4ea6-a4c7-dd8945dfa303" alt="Mounted on custom motor" style="width: 30%;">
+  <img src="https://github.com/user-attachments/assets/d7143a77-d2e6-44ee-945c-3f06ae84d620" alt="Driver boards, front and back view" style="width: 30%;">
+  <img src="https://github.com/user-attachments/assets/b2607def-43b3-4729-9db8-7134323ad120" alt="YVCase 1 and 2" style="width: 30%;">
 </div>
+
 
 Running a STM32G431RBT6, a DRV8323H gate driver, and an AS5047P absolute encoder.
 
