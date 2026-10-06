@@ -4,7 +4,7 @@ nav_order: 4
 has_children: true
 ---
 
-## Issues
+# Issues
 
 Some hardware and firmware issues for board releases are reported in this section. Currently, documentation is available for V1.0 and mentioned in the usage instructions as well as here:
 
