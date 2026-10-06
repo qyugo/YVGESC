@@ -1,12 +1,14 @@
 ---
-title: Firmware Documentation
+title: FOC Documentation
 nav_order: 5
 has_children: true
 ---
 
-# Firmware Documentation
+# FOC Documentation
 
-This contains the documentation for firmware bring-up. If you received a board from me, you can head straight to the [Instructions](../docs/instructions/Firmware-Setup.md) section for first flash.
+This contains the documentation for the first bring-up to basic FOC control (position, velocity, torque, impedance control in closed loop) via hardware corrections, firmware and software on the YVGESC-1.
+
+If you received a board from me, you can head straight to the [Instructions](../docs/instructions/Firmware-Setup.md) section for first flash.
 
 Current status: Torque, velocity, and position/spring damper control loops written, achieved and tuned.
 
