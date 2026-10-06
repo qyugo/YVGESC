@@ -65,6 +65,8 @@ There is some noise, may try to reduce using oversampling later on, there is lik
 
 Current sense complete, next up will be the FDCAN and first PWM drive.
 
+ADC and everything works. Released as 0.1.
+
 ## FDCAN
 
 PB8 is wired to CAN_RX, and PB9 is wired to CAN_TX, clocked to HSE @ 8MHz.
@@ -102,6 +104,273 @@ pllm to /2
 124ns tim1 dead time
 
 SPi2 prescaler to 5.3125 mHZ
+
+Open loop success. Released as 0.2.
+
+## Phase Current Sampling
+
+In this part, the sampling is configured to happen at a fixed point in each PWM cycle. The shunts are located on the low side FETs.
+
+A PWM generation (No Output) channel is set for CH4, acting basically as a comparator:
+<img width="492" height="97" alt="image" src="https://github.com/user-attachments/assets/4f9cc67b-4a98-4334-bd5f-0bbcf8469d85" />
+
+VREF, initially part of the 4 injected channels, is now in the regular conversion channel. 
+
+
+<img width="478" height="220" alt="image" src="https://github.com/user-attachments/assets/81e3cf7b-f5e1-45a4-bc88-2e0e0aa11a37" />
+
+For the injected conversions, the sample is now performed on the falling edge of Timer 1 Trigger Out Event 2.
+
+The interrupt line in USER CODE 4 is implemented as follows:
+
+```
+c
+void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *h)
+{
+    if (h->Instance != ADC1) return;
+    int32_t a = HAL_ADCEx_InjectedGetValue(h, ADC_INJECTED_RANK_1);
+    int32_t b = HAL_ADCEx_InjectedGetValue(h, ADC_INJECTED_RANK_2);
+    int32_t c = HAL_ADCEx_InjectedGetValue(h, ADC_INJECTED_RANK_3);
+    so[0] = a; so[1] = b; so[2] = c;
+
+    static int32_t sa, sb, sc, n;                 /* offset calibration */
+    if (cal_req && !pwm_run) {
+        sa += a; sb += b; sc += c;
+        if (++n == 1024) {
+            off[0] = sa / 1024; off[1] = sb / 1024; off[2] = sc / 1024;
+            sa = sb = sc = n = 0; cal_req = 0;
+        }
+    }
+    ia = (a - off[0]) * A_PER_COUNT;
+    ib = (b - off[1]) * A_PER_COUNT;
+    ic = (c - off[2]) * A_PER_COUNT;
+    isum = ia + ib + ic;
+    isr_cnt++;
+}
+```
+
+Calibrating (cal_req=1, pwm_on=1, ol_mode=1, ol_v = 0.12
+
+<img width="891" height="651" alt="image" src="https://github.com/user-attachments/assets/672f4748-b830-4513-8fee-e280cea1bf8f" />
+
+Current sums roughly 0:
+
+<img width="818" height="134" alt="image" src="https://github.com/user-attachments/assets/3d361b03-3ec7-4217-87f0-8bf696e3543a" />
+
+Calibration with encoder adn offset:
+
+<img width="752" height="260" alt="image" src="https://github.com/user-attachments/assets/1f493330-2656-4d0f-bac9-f04855f659d9" />
+
+<img width="746" height="250" alt="image" src="https://github.com/user-attachments/assets/a4f801f8-be34-431e-9215-6ef0e6b4b3a6" />
+
+
+<img width="745" height="261" alt="image" src="https://github.com/user-attachments/assets/67db0fd1-1e91-4000-9bcb-e95844fd250c" />
+
+<img width="738" height="250" alt="image" src="https://github.com/user-attachments/assets/ee74c029-84ee-4b17-afc5-a8d5bcdf5914" />
+
+<img width="749" height="222" alt="image" src="https://github.com/user-attachments/assets/ff96b317-36ab-4df4-8e38-20b91074bfee" />
+
+ia, ib, ic are amps of the measured phase currents by the ADC via its $1 m\Omega$ shunt and multiplied by the gain of 40V/V.
+
+Contextualization
+Next, ia, ib, and ic are used in the Clarke transforms to become $I\alpha$ and $I\beta$, into a 2-part current descriptor in reference to the stator frame.
+
+The park transform then converts $I\alpha$ and $I\beta$ into Iq and Id, in reference to the rotor axis.
+
+The current loop then keeps Id at 0 and Iq relative to a torque command.
+
+## CURRENT LOOP - Running inside the ADC2 interrupt (20kHz)
+
+What it does: measures current and transforms them into Id and Iq using encoder angle, with two PI controllers
+
+New variables:
+```
+c
+volatile uint32_t foc_mode = 0;          /* 1 = current loop drives the PWM */
+volatile float id_ref = 0.0f, iq_ref = 0.0f;   /* commanded currents, A */
+volatile float id, iq, vd, vq;           /* measured currents, output voltages */
+volatile float kp = 0.3f;                /* V/A   (L × ωc, ωc = 2π·1 kHz) */
+volatile float ki_ts = 0.03f;            /* V/A per sample (R × ωc × Ts) */
+volatile float i_max = 2.0f;             /* command limit, A */
+volatile float i_trip = 8.0f;            /* instant shutdown, A */
+volatile uint32_t foc_fault = 0, isr_cycles = 0;
+#define VBUS 12.0f
+```
+
+Interrupt callback:
+```
+c
+void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *h)
+{
+    if (h->Instance != ADC1) return;
+    uint32_t t0 = DWT->CYCCNT;
+
+    /* --- currents --- */
+    int32_t a = HAL_ADCEx_InjectedGetValue(h, ADC_INJECTED_RANK_1);
+    int32_t b = HAL_ADCEx_InjectedGetValue(h, ADC_INJECTED_RANK_2);
+    int32_t c = HAL_ADCEx_InjectedGetValue(h, ADC_INJECTED_RANK_3);
+    so[0] = a; so[1] = b; so[2] = c;
+
+    static int32_t sa, sb, sc, n;
+    if (cal_req && pwm_run && ol_mode && !foc_mode && ol_v == 0.0f) {
+        sa += a; sb += b; sc += c;
+        if (++n == 1024) {
+            off[0] = sa / 1024; off[1] = sb / 1024; off[2] = sc / 1024;
+            sa = sb = sc = n = 0; cal_req = 0;
+        }
+    }
+    ia = (a - off[0]) * A_PER_COUNT;
+    ib = (b - off[1]) * A_PER_COUNT;
+    ic = (c - off[2]) * A_PER_COUNT;
+    isum = ia + ib + ic;
+
+    /* --- encoder (moved here from the main loop) --- */
+    raw = enc_frame();
+    reads++;
+    if (__builtin_parity(raw))      par_err++;
+    else if (raw & 0x4000)          ef_cnt++;
+    else                            ang = raw & 0x3FFF;
+    float mech  = ang * (360.0f / 16384.0f);
+    float raw_e = fmodf(mech * pole_pairs, 360.0f);
+    if (align_req && pwm_run) { e_off = raw_e; align_req = 0; }
+    e_deg = raw_e - e_off;
+    if (e_deg < 0.0f) e_deg += 360.0f;
+
+    /* --- hard overcurrent trip --- */
+    if (fabsf(ia) > i_trip || fabsf(ib) > i_trip || fabsf(ic) > i_trip) {
+        __HAL_TIM_MOE_DISABLE_UNCONDITIONALLY(&htim1);
+        pwm_run = 0; foc_fault = 1;
+    }
+
+    /* --- current loop --- */
+    static float id_int = 0.0f, iq_int = 0.0f;
+    if (foc_mode && pwm_run) {
+        float th = e_deg * 0.0174533f, s = sinf(th), co = cosf(th);
+
+        float ial = ia;                              /* Clarke */
+        float ibe = (ia + 2.0f * ib) * 0.57735f;
+        id =  ial * co + ibe * s;                    /* Park */
+        iq = -ial * s  + ibe * co;
+
+        float idr = fminf(fmaxf(id_ref, -i_max), i_max);
+        float iqr = fminf(fmaxf(iq_ref, -i_max), i_max);
+        float vlim = 0.9f * VBUS * 0.57735f;
+
+        float ed = idr - id, eq = iqr - iq;          /* PI */
+        id_int = fminf(fmaxf(id_int + ki_ts * ed, -vlim), vlim);
+        iq_int = fminf(fmaxf(iq_int + ki_ts * eq, -vlim), vlim);
+        float vdd = kp * ed + id_int, vqq = kp * eq + iq_int;
+        float vm = sqrtf(vdd * vdd + vqq * vqq);
+        if (vm > vlim) { vdd *= vlim / vm; vqq *= vlim / vm; }
+        vd = vdd; vq = vqq;
+
+        float val = vdd * co - vqq * s;              /* inverse Park */
+        float vbe = vdd * s  + vqq * co;
+        float Va = val;                              /* inverse Clarke */
+        float Vb = -0.5f * val + 0.866025f * vbe;
+        float Vc = -0.5f * val - 0.866025f * vbe;
+        float vo = 0.5f * (fmaxf(Va, fmaxf(Vb, Vc)) + fminf(Va, fminf(Vb, Vc)));
+
+        uint32_t arr = __HAL_TIM_GET_AUTORELOAD(&htim1);
+        float k = arr / VBUS, mid = arr * 0.5f;
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, (uint32_t)(mid + (Va - vo) * k));
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, (uint32_t)(mid + (Vb - vo) * k));
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, (uint32_t)(mid + (Vc - vo) * k));
+    } else {
+        id_int = iq_int = 0.0f;                      /* reset when not running */
+    }
+
+    isr_cycles = DWT->CYCCNT - t0;
+    isr_cnt++;
+}
+```
+
+Testing order:
+foc_mode = 0, ol_mode = 1, ol_v = 0, cal_req = 1, pwm_on = 1
+
+ol_v = 0.15, ol_deg = 0, -> run -> align_req = 1
+
+TORQUE MODE/closed loop current: Minimum Iq = 2 to spin for Eaglepower
+
+Torque mode / inner PI loops complete
+
+FLASH update to store calibrations:
+```c FLASH    (rx)    : ORIGIN = 0x8000000,   LENGTH = 126K ```
+
+AFter good alignment: save_req = 1, save_res = 0 in debug
+
+kp = 0.3, ki = 0.03
+
+Works with flash calibration. If needed, realign and hit save_req=1, otherwise calibration should happen automatically upon boot.
+
+## VELOCITY CONTROL
+
+New variables:
+```
+c
+volatile uint32_t vel_mode = 0;      /* 1 = velocity loop sets iq */
+volatile float vel_ref  = 0.0f;      /* commanded speed, rad/s (mechanical) */
+volatile float vel      = 0.0f;      /* estimated speed, rad/s */
+volatile float rpm      = 0.0f;      /* same, in RPM, for viewing */
+volatile float pos      = 0.0f;      /* multi-turn position, rad */
+volatile float vel_kp   = 0.05f;     /* A per (rad/s) */
+volatile float vel_ki   = 0.5f;      /* A per rad */
+volatile float pll_bw   = 1000.0f;   /* speed estimator bandwidth, rad/s */
+volatile float vel_trip = 150.0f;    /* overspeed shutdown, rad/s (~1430 RPM) */
+volatile float iq_cmd   = 0.0f;      /* iq actually used by the current loop */
+```
+Interrupt:
+```
+c
+    /* --- multi-turn position + PLL speed estimate --- */
+    const float TS = 50e-6f, CNT2RAD = 6.2831853f / 16384.0f;
+    static int32_t last_ang = -1, pos_cnt = 0;
+    static float pos_est = 0.0f, vel_est = 0.0f;
+    if (last_ang < 0) { last_ang = ang; }
+    int32_t dcnt = (int32_t)ang - last_ang;
+    if (dcnt >  8192) dcnt -= 16384;
+    if (dcnt < -8192) dcnt += 16384;
+    last_ang = ang;
+    pos_cnt += dcnt;
+    float pos_meas = pos_cnt * CNT2RAD;
+
+    float perr = pos_meas - pos_est;
+    pos_est += TS * (vel_est + 2.0f * pll_bw * perr);
+    vel_est += TS * (pll_bw * pll_bw * perr);
+    pos = pos_meas;  vel = vel_est;  rpm = vel_est * 9.5493f;
+
+    /* --- overspeed trip --- */
+    if (pwm_run && fabsf(vel_est) > vel_trip) {
+        __HAL_TIM_MOE_DISABLE_UNCONDITIONALLY(&htim1);
+        pwm_run = 0; foc_fault = 2;
+    }
+
+    /* --- velocity loop -> iq command --- */
+    static float vel_int = 0.0f;
+    if (vel_mode && foc_mode && pwm_run) {
+        float ve = vel_ref - vel_est;
+        vel_int = fminf(fmaxf(vel_int + vel_ki * ve * TS, -i_max), i_max);
+        iq_cmd  = fminf(fmaxf(vel_kp * ve + vel_int, -i_max), i_max);
+    } else {
+        vel_int = 0.0f;
+        iq_cmd  = iq_ref;
+    }
+```
+New fault label: foc_fault 2 = overspeed, foc_faul 1 = overcurrent
+
+Kp 0.2, Ki 15
+
+Some cogging stuff at lower speeds, bumped up ki, bumping up kp gives a grinding noise not from the motor.
+
+Released as V0.4 in firmware.
+
+## Impedance Control
+
+Objective: spring damper with feed forward torque t_ff
+
+
+
+
 
 
 
