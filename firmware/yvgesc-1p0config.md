@@ -1,4 +1,12 @@
-FIRMWARE
+---
+title: 1.0 Bring-up Documentation
+parent: Firmware Documentation
+nav_order: 1
+---
+
+# Documentation for 0.0 Firmware to 1.0 Firmware
+
+This documents the hardware, firmware, and software bring-up and testing process for developing all V0 versions up to V1.0, which is the first stable release.
 
 1. CubeMX was used to generate an STM32CubeIDE project for blink.
 
