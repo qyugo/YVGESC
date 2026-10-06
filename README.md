@@ -38,7 +38,7 @@ Instead of a brake resistor circuit, regeneration is controlled via firmware. Ov
 
 Additional hardware, such as CAN cables, an ST-Link board, 1.27mm SWD connectors, MIDI/ANL fuse, brake resistor, USB isolator, radial magnet, and XT60 input connector is outlined in the [Instructions](docs/instructions/README.md) tab.
 
-The board does not natively support simultaneous usage of USB and power, unless an off-board USB galvanic isolator is used, to prevent ground loops. 
+The USB on this board is unpowered and acts only as a data line, therefore a USB isolator is not required for running the board. However, it is still recommended to use one for galvanic isolation and preventing ground loops, as well as preventing upstream voltage through the USB in case the board explodes.
 
 The board also does not contain onboard overcurrent protection, besides the OCP trip programmed in the gate driver. An inline MIDI fuse rated for 58V/50A can be used offboard as an extra safety measure.
 
