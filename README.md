@@ -34,7 +34,7 @@ Instead of a brake resistor circuit, regeneration is controlled via firmware. Ov
 
 ## Considerations
 
-Additional hardware, such as CAN cables, an ST-Link board, 1.27mm SWD connectors, MIDI/ANL fuse, brake resistor, USB isolator, radial magnet, and XT60 input connector is outlined in the [Instructions](instructions/README.md) tab.
+Additional hardware, such as CAN cables, an ST-Link board, 1.27mm SWD connectors, MIDI/ANL fuse, brake resistor, USB isolator, radial magnet, and XT60 input connector is outlined in the [Instructions](docs/instructions/README.md) tab.
 
 The board does not natively support simultaneous usage of USB and power, unless an off-board USB galvanic isolator is used, to prevent ground loops. 
 
