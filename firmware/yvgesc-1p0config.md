@@ -485,8 +485,8 @@ static void param_req(const uint8_t *d)
           if (pwm_on) { pwm_on = 0; if (!foc_fault) { pwm_run = 1; t_on = HAL_GetTick(); } }
           if (pwm_run && (HAL_GetTick() - t_on >= pwm_ms)) pwm_run = 0;
           uint32_t lp = last_param_ms;
-          if (keepalive && pwm_run && (HAL_GetTick() - last_param_ms > 1000))
-                        pwm_run = 0;  
+          if (keepalive && pwm_run && (HAL_GetTick() - lp > 1000))
+             pwm_run = 0;
       }
       was_can = can_en;
 ```
