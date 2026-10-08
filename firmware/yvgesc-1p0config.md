@@ -410,17 +410,95 @@ Released as V0.4 in firmware.
 
 ## 11. Position and Impedance Control
 
-Objective: spring damper with feed forward torque t_ff
+Objective: spring damper with feed forward torque t_ff.
 
 Success.
 
-## 12. CAN from another source/telemetry tests
+TODO: User-friendly settings for stiff, medium, and loose compliance, as well as manual tuning via CAN.
 
-TBD
+## 12. CAN from another source/telemetry tests + YVGESC Control Software
 
-## 13. Flux Braking (Advanced)
+Using first a CANable isolator to send telemtry directly from a PC, a python script was developed, which later was developed into the YVGESC UI. All debugging parameters, including zeroing, calibration, open loop controls, FOC controls, and tuning parameters were sent to the CAN bus in the callback section of the firmware. More details can be found in [CAN Setup](setups/CANSetup.md). 
 
-TBD
+Given at this point the firmware already runs a calibration script, the CAN python UI offers preprogrammed buttons that run times sequences for calibration, zeroing, and encoder alignment, in case things get messy during testing. At this point, the alignment occasionally falls, and will be debugged in later versions.
+
+Further, as the software clears faults automatically if reset, an additional reset diagnosis from the previous fault is implemented.
+
+```
+c
+
+//Private variable
+volatile uint32_t rst_csr = 0;
+// PV end
+
+  /* USER CODE BEGIN 1 */
+
+	rst_csr = RCC->CSR;
+	   RCC->CSR |= RCC_CSR_RMVF;
+
+  /* USER CODE END 1 */
+/*USER CODE BEGIN 4 */
+	/* 53 */ { &rst_csr, VT_U, 0 },
+*/
+```
+In the software, fault causes are described in plain language in the UI.
+```
+python
+def reset_cause(csr):
+    flags = [(31, "low-power"), (30, "WWDG"), (29, "IWDG"), (28, "software"),
+             (27, "brown-out"), (26, "reset pin"), (25, "option bytes")]
+    hits = [n for b, n in flags if csr & (1 << b)]
+    return ", ".join(hits) if hits else hex(csr)
+```
+
+At this point, most of my testing runs had a hard 10s limit. I'd still like to keep this limit on in the meantime for personal use, but I increased it to 60s for longer tests. An additional script to stop the board in 1s if the CAN cables happen to lose connection. 
+Note* If in debugger mode, keepalive needs to be set to 0 since it's not in CAN mode.
+
+```
+c
+volatile uint32_t last_param_ms = 0, keepalive = 1;
+
+if (pwm_ms > 60000) pwm_ms = 60000;   /*60s limit*/
+
+static void param_req(const uint8_t *d)
+{
+	last_param_ms = HAL_GetTick();
+    FDCAN_TxHeaderTypeDef th = txh;
+    th.Identifier = 0x580 + NODE_ID;
+    th.DataLength = FDCAN_DLC_BYTES_8;
+
+    uint8_t r[8] = { 0 };
+    uint8_t op = d[0], idx = d[1];
+    r[1] = idx;
+
+/* CAN*/
+      static uint32_t t_on = 0;
+      static uint8_t was_can = 0;
+      uint32_t lc = last_cmd_ms;
+      if (can_en && (HAL_GetTick() - lc > 100)) {                 /* 100 ms timeout */
+                can_en = 0; can_timeout_cnt++;
+            }
+      if (can_en) {
+          pwm_run = foc_fault ? 0 : 1;                           /* CAN in control */
+      } else {
+          if (was_can) pwm_run = 0;                              /* CAN just stopped */
+          if (pwm_on) { pwm_on = 0; if (!foc_fault) { pwm_run = 1; t_on = HAL_GetTick(); } }
+          if (pwm_run && (HAL_GetTick() - t_on >= pwm_ms)) pwm_run = 0;
+          uint32_t lp = last_param_ms;
+          if (keepalive && pwm_run && (HAL_GetTick() - last_param_ms > 1000))
+                        pwm_run = 0;  
+      }
+      was_can = can_en;
+```
+*AT THIS POINT, THE BOARD SHOULD STILL DRAW ~0.026A WHEN IDLE @ 12V.
+
+*TODO:*
+
+## 13. DFU, BOOT0, and USB
+
+## 14. USB SLCAN
+
+## 15. Flux Braking (Advanced)
 
 
 
