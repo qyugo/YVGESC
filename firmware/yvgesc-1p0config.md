@@ -338,31 +338,19 @@ Minimum Iq = 2 to spin for Eaglepower
 
 Torque mode / inner PI loops complete
 
+
+Self note: kp = 0.3, ki = 0.03
+
 FLASH update to store calibrations:
 ```c FLASH    (rx)    : ORIGIN = 0x8000000,   LENGTH = 126K ```
 
 AFter good alignment: save_req = 1, save_res = 0 in debug
 
-kp = 0.3, ki = 0.03
 
 Works with flash calibration. If needed, realign and hit save_req=1, otherwise calibration should happen automatically upon boot.
 
 ## 10. VELOCITY CONTROL
 
-New variables:
-```
-c
-volatile uint32_t vel_mode = 0;      /* 1 = velocity loop sets iq */
-volatile float vel_ref  = 0.0f;      /* commanded speed, rad/s (mechanical) */
-volatile float vel      = 0.0f;      /* estimated speed, rad/s */
-volatile float rpm      = 0.0f;      /* same, in RPM, for viewing */
-volatile float pos      = 0.0f;      /* multi-turn position, rad */
-volatile float vel_kp   = 0.05f;     /* A per (rad/s) */
-volatile float vel_ki   = 0.5f;      /* A per rad */
-volatile float pll_bw   = 1000.0f;   /* speed estimator bandwidth, rad/s */
-volatile float vel_trip = 150.0f;    /* overspeed shutdown, rad/s (~1430 RPM) */
-volatile float iq_cmd   = 0.0f;      /* iq actually used by the current loop */
-```
 Interrupt:
 ```
 c
@@ -409,6 +397,15 @@ Some cogging stuff at lower speeds, bumped up ki, bumping up kp gives a grinding
 Released as V0.4 in firmware.
 
 ## 11. Position and Impedance Control
+
+```
+c
+else if (foc_mode && pwm_run && ctrl_mode == 2) {     /* impedance */
+        vel_int = 0.0f;
+        float tq = kp_p * (p_ref - p_rel) + kd_p * (v_ff - vel_est) + t_ff;
+        torque_cmd = tq;
+        iq_cmd = fminf(fmaxf(tq / kt, -i_max), i_max);
+```
 
 Objective: spring damper with feed forward torque t_ff.
 
@@ -493,6 +490,7 @@ static void param_req(const uint8_t *d)
 *AT THIS POINT, THE BOARD SHOULD STILL DRAW ~0.026A WHEN IDLE @ 12V.
 
 *TODO:*
+/---
 
 ## 13. DFU, BOOT0, and USB
 
