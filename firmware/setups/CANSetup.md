@@ -14,3 +14,10 @@ CANH Pin 1, CANL Pin 2
 
 For my connectors, yellow is CANH, black is CANL, red is GND.
 
+<img width="859" height="177" alt="image" src="https://github.com/user-attachments/assets/5039d268-01d8-4d70-8719-4f9189fe44a0" />
+<img width="595" height="253" alt="image" src="https://github.com/user-attachments/assets/da9ef1ac-d9ac-497f-a8b7-1d9ed188eb04" />
+
+In NVIC, interrupt priority is set to ADC before FDCAN1:
+
+<img width="619" height="188" alt="image" src="https://github.com/user-attachments/assets/d0193883-856a-41ed-be55-33c804fd010a" />
+
