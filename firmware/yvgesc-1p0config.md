@@ -1,8 +1,10 @@
 ---
 title: 1.0 Firmware Documentation
-parent: FOC Documentation
+parent: Firmware
 nav_order: 1
 ---
+
+*UNDER CONSTRUCTION, Please come back later for updates and better organization. 10/14/26*
 
 # Documentation for 0.0 Firmware to 1.0 Firmware
 
