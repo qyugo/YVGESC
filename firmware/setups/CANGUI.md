@@ -1,5 +1,5 @@
 ---
-title: YVGUI Python Script
+title: Python Script
 parent: CAN Setup + GUI
 nav_order: 2
 ---
