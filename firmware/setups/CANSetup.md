@@ -23,6 +23,9 @@ Check the instructions for the UI usage and variable nomenclature [here](YVGUIin
   allowfullscreen>
 </iframe>
 
+<img width="722" height="774" alt="image" src="https://github.com/user-attachments/assets/67f6f867-37d8-43b1-8588-f8ca0d426409" />
+
+
 Here, CAN was configured to send parameters and telemetry from both a computer using a CANAble and through another board. If only using two nodes (one sender, one receiver), the $120\Omega$ switch should be turned ON on both sides. Therefore, the resistance from CANH to CANL should be $60\Omega$.
 
 ## Setup Documentation
