@@ -9,6 +9,12 @@ permalink: /
 # YVGESC
 This is my custom driver board that runs Field-Oriented Control (FOC) for high-performance servo, speed, and torque control for brushless DC motors. 
 
+<div style="display: flex; gap: 1rem;">
+  <img src="https://github.com/user-attachments/assets/58070d90-d1f3-4c61-8947-f1a67ea310bc" alt="Mounted on custom motor" style="width: 45%;">
+  <img src="https://github.com/user-attachments/assets/3f4b989e-57a9-439d-a9ab-903436ed0406" alt="YVCase 1 and 2" style="width: 45%;">
+</div>
+
+
 It is a 64x74mm board I designed in KiCad and commissioned to JLCPCB, handling up to 50V bus, 30A continuous current per phase (if air-blasted), and a 52A peak current.
 
 This is the final implementation in a full-stack actuator learning adventure I embarked on for fun, having built brushless motors from scratch, a motor-assembling visualizer, and a BLDC drivetrain. If you are interested, those projects are on my website.
