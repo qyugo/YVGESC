@@ -1,5 +1,5 @@
 ---
-title: FOC Documentation
+title: Firmware
 nav_order: 5
 has_children: true
 ---
@@ -16,6 +16,7 @@ Pre-releases:
 
 | Version | Release Date | Download | Description |
 |:--------|:-------------|:---------|:------------|
+| v1.0.0 | 2026-10-10 | [firmware-v0p4](https://github.com/qyugo/YVGESC/tree/main/firmware/1p0) | Impedance control, CAN, closed loop FOC. |
 | v0.4.0 | 2026-10-3 | [firmware-v0p4](https://github.com/qyugo/YVGESC/tree/main/firmware/0p4-Velocity-PI-Loop) | Velocity PI loops. |
 | v0.3.0 | 2026-10-2 | [firmware-v0p3](https://github.com/qyugo/YVGESC/tree/main/firmware/0p3-CURRENT-PI-LOOPS%2BCalibrationscript) | Current loops and calibration script. |
 | v0.2.0 | 2026-9-30 | [firmware-v0p2](https://github.com/qyugo/YVGESC/tree/main/firmware/0p2-FDCAN-PWM/yvgesc-v1p0) | FDCAN and PWM development. |
