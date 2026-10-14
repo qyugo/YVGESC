@@ -151,6 +151,4 @@ Softwares used:
 3. **STM32CubeIDE - Compile and flash C code for MCU**
 
 
-Flux Braking Setup - TBD
-
 
