@@ -4,7 +4,7 @@ nav_order: 5
 has_children: true
 ---
 
-# FOC Documentation
+# Firmware Releases
 
 This contains the documentation for the first bring-up to basic FOC control (position, velocity, torque, impedance control in closed loop) via hardware corrections, firmware and software on the YVGESC-1.
 
