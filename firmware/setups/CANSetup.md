@@ -1,8 +1,18 @@
-# CAN Setup
+# CAN Setup + Python UI
 
-Internal loopback was configured in V0 firmware.
+<iframe
+  src="https://www.youtube.com/embed/SErpxAt9m6E"
+  style="width:100%; aspect-ratio:16/9; border:0;"
+  title="CAN setup"
+  loading="lazy"
+  allowfullscreen>
+</iframe>
 
-Here, CAN will be configured to send parameters and telemetry from both a computer and through another board.
+
+In the V0 firmware, only internal loopback was configured for CAN. 
+V1 firmware requires a CAN adaptor as USB->SLCAN had not been configured, but should work without the setup steps.
+
+Here, CAN was configured to send parameters and telemetry from both a computer using a CANAble and through another board. If only using two nodes (one sender, one receiver), the $120\Omega$ switch should be turned ON on both sides. Therefore, the resistance from CANH to CANL should be $60\Omega$.
 
 1. USB to CAN Adapter
 
