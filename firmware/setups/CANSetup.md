@@ -1,5 +1,12 @@
 # CAN Setup + Python UI
 
+In the V0 firmware, only internal loopback was configured for CAN. 
+V1 firmware requires a CAN adaptor as USB->SLCAN had not been configured, but should work without the setup steps.
+
+[Download V1 firmware](../1p0)
+<br>
+[Download CAN UI](YVCAN1p0.py)
+
 <iframe
   src="https://www.youtube.com/embed/SErpxAt9m6E"
   style="width:100%; aspect-ratio:16/9; border:0;"
@@ -8,11 +15,9 @@
   allowfullscreen>
 </iframe>
 
-
-In the V0 firmware, only internal loopback was configured for CAN. 
-V1 firmware requires a CAN adaptor as USB->SLCAN had not been configured, but should work without the setup steps.
-
 Here, CAN was configured to send parameters and telemetry from both a computer using a CANAble and through another board. If only using two nodes (one sender, one receiver), the $120\Omega$ switch should be turned ON on both sides. Therefore, the resistance from CANH to CANL should be $60\Omega$.
+
+## Setup Documentation
 
 1. USB to CAN Adapter
 
@@ -31,7 +36,7 @@ In NVIC, interrupt priority is set to ADC before FDCAN1:
 
 <img width="619" height="188" alt="image" src="https://github.com/user-attachments/assets/d0193883-856a-41ed-be55-33c804fd010a" />
 
-SLCAN Python Script (PC -> YVGESC)
+## SLCAN Python Script (PC -> YVGESC)
 
 ```
 python
